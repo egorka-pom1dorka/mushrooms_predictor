@@ -9,3 +9,5 @@ __pycache__/
 *.py[cod]
 *$py.class
 .idea
+user_data/
+/data/logs.txt

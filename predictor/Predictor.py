@@ -8,8 +8,8 @@ from predictor.DataHolder import DataHolder
 class Predictor:
     _WIDTH = 300
     _HEIGHT = 300
-    _VALID_PREDICTION_MIN_PERCENT = 70
-    _INVALID_PREDICTION_PERCENT = 15
+    _VALID_PREDICTION_MIN_PERCENT = 65
+    _INVALID_PREDICTION_PERCENT = 40
 
     def __init__(self, model_file_path, data_file_path):
         self.model = load_model(model_file_path)

@@ -44,7 +44,6 @@ class Output:
         for prediction in predictions:
             mushroom = prediction['mushroom_data']
             message += self._get_message_about_mushroom(mushroom)
-            print(message)
 
         return message
 

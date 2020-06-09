@@ -1,10 +1,13 @@
 import telebot
 import os
+from logger import Logger
 from output import Output
 from predictor import Predictor
+from datetime import datetime
 
 bot = telebot.TeleBot('%token%')
 predictor = Predictor('./data/mushrooms.h5', './data/mushrooms.csv')
+logger = Logger('./data/logs.txt')
 output = Output()
 
 text_command = 'text'
@@ -92,6 +95,11 @@ def send_prediction(message):
         last_prediction = None
         output_message = prediction
 
+    now = datetime.now()
+    log_message = '%s. Prediction for %s: %s' % (now, image_path, output_message)
+    logger.log(log_message)
+    print(log_message)
+
     if response_type == 'audio':
         audio_path = base_path + file_id + ".mp3"
         output.generate_audio(output_message, audio_path)
@@ -99,8 +107,6 @@ def send_prediction(message):
         os.remove(audio_path)
     else:
         bot.send_message(message.chat.id, output_message)
-
-    os.remove(image_path)
 
 
 bot.polling()
